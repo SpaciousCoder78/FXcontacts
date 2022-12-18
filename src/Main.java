@@ -3,6 +3,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 public class Main {
     public static void main(String[] args) {
 
@@ -13,11 +14,8 @@ public class Main {
     public static void app()
     {
         System.out.println("--------------------------FX contacts---------------------");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the contact name: ");
-        String name = sc.next();
-        System.out.println("Enter the phone number");
-        String phone= sc.next();
+        String name = JOptionPane.showInputDialog("Enter the contact's name");
+        String phone= JOptionPane.showInputDialog("Enter the contact number");
         String filepath="contacts.csv";
         saveRecord(name,phone,filepath);
     }
@@ -29,15 +27,14 @@ public class Main {
 
             pw.println(name+","+phone);
             pw.flush();
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Do you want to add another contact? Press 1 to continue");
-            int prompt = sc.nextInt();
-            if (prompt==1){
-                app();
-            }
             pw.close();
 
             JOptionPane.showMessageDialog(null,"Record Saved");
+
+            int prompt = Integer.parseInt(JOptionPane.showInputDialog("Do you want to add another contact? Press 1 to continue"));
+            if (prompt==1){
+                app();
+            }
 
 
 
